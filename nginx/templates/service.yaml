@@ -5,11 +5,10 @@ metadata:
   labels:
     {{- include "nginx.labels" . | nindent 4 }}
 spec:
-  type: {{ .Values.service.type }}
+  type: NodePort
   ports:
     - port: 80
-      targetPort: 5000 
-      protocol: TCP
-      name: http
+      targetPort: 5000
+      nodePort: 30001
   selector:
     {{- include "nginx.selectorLabels" . | nindent 4 }}
